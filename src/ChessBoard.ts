@@ -1,6 +1,4 @@
-
 export type Position = [number, number];
-
 export type Queen = {
     name:'Q';
     position:Position;
