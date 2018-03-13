@@ -4,7 +4,7 @@ export type Position = [number, number];
 export type Queen = {
     kind:'queen';
     position:Position;
-}
+};
 
 export class ChessBoard {
     private static readonly invalidParamsError = 'Invalid constructor parameters!';

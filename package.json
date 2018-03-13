@@ -10,7 +10,7 @@
     "pretest": "npm run build",
     "test": "nyc mocha",
     "prestart": "npm run build",
-    "start": "node dist/src/tempDebugging.js"
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
