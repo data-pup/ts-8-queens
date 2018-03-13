@@ -17,6 +17,17 @@ export class ChessBoard {
                 throw new Error(this.invalidPositionError);
             }
         });
+
+        const positionsAreUnique = pieces // Check each position is unique.
+            .map((q:Queen) : Position => q.position)
+            .every((currPos:Position, i:number, arr:Position[]) : boolean =>
+                arr.filter( // Check that only one item in the position list matches.
+                    (evalPos:Position) : boolean =>
+                        currPos[0] === evalPos[0] && currPos[1] === evalPos[1],
+                ).length === 1, // If more than 1 position matched, there are duplicates.
+            );
+
+        if (!positionsAreUnique) { throw new Error(this.invalidPositionError); }
     }
 
     public static readonly invalidParamsError = 'Invalid constructor parameters!';

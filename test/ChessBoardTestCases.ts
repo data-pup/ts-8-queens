@@ -44,6 +44,15 @@ export class ChessBoardTestCases {
     public static readonly invalidPositionsTests:ChessBoardTestCase[] = [
         {
             height:8, width:8,
+            pieces:[
+                {name:'Q', position:[0, 0]},
+                {name:'Q', position:[0, 0]},
+            ],
+            expectedError:ChessBoard.invalidPositionError,
+            testDesc:'Two pieces cannot occupy the same space.',
+        },
+        {
+            height:8, width:8,
             pieces:[ {name:'Q', position:[-1, 0]} ],
             expectedError:ChessBoard.invalidPositionError,
             testDesc:'Piece cannot be at negative coordinates.',
