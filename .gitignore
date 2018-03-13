@@ -1,0 +1,9 @@
+# Ignore node modules.
+node_modules/
+
+# Ignore the build directory.
+dist/
+
+# Ignore the test result output directory.
+.nyc_output/
+
