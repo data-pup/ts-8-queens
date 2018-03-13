@@ -11,9 +11,8 @@ export class ChessBoard {
     }
 
     private static validatePositions(pieces:Queen[], height:number, width:number) : void {
-        pieces.map((q:Queen) : Position => q.position) // Select each position.
+        pieces.map((q:Queen) : Position => q.position) // Iterate through each position.
             .forEach(([x, y]:Position, i:number, arr:Position[]) => {
-                // const [x, y]:Position = currPos; // Check that the position is in bounds.
                 if (x < 0 || y < 0 || x >= height || y >= height) {
                     throw new Error(this.invalidPositionError);
                 } // Check that only one piece is at the current position.
