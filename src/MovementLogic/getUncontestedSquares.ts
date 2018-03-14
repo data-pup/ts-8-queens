@@ -1,4 +1,4 @@
-import { ChessBoard, Position } from './ChessBoard';
+import { ChessBoard, Position } from '../ChessBoard/ChessBoard';
 import { getQueenMovementOptions } from './getQueenMovementOptions';
 
 export const getUncontestedSquares = (board:ChessBoard) : Position[] => {

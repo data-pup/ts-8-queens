@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { Queen } from '../src/ChessBoard';
+import { Queen } from '../src/ChessBoard/ChessBoard';
 
 export const assertPieceCollectionsAreSame = (pieces:Queen[], expected:Queen[], message:string) : void => {
     assert.equal(pieces.length, expected.length, message);

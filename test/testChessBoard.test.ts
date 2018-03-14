@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import { suite, test } from 'mocha-typescript';
 import { assertPieceCollectionsAreSame } from './assertPieceCollectionsAreSame';
 import { ChessBoardTestCase, ChessBoardTestCases } from './ChessBoardTestCases';
-import { ChessBoard } from '../src/ChessBoard';
+import { ChessBoard } from '../src/ChessBoard/ChessBoard';
 
 /* tslint:disable-next-line:no-unused-variable */
 @suite class TestChessBoard {

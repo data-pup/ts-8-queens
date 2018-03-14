@@ -4,7 +4,7 @@ import {
     getSquareCharMatrix,
     setPieceChars,
 } from './stringHelpers';
-import { IChessBoard } from '../ChessBoard';
+import { IChessBoard } from '../ChessBoard/ChessBoard';
 
 export const getChessBoardString = (board:IChessBoard) : string => {
     const horizontalBorder = getHorizontalBorder(board.width);

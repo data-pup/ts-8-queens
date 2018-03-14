@@ -1,4 +1,4 @@
-import { ChessBoard, Queen } from '../src/ChessBoard';
+import { ChessBoard, Queen } from '../src/ChessBoard/ChessBoard';
 
 export type ChessBoardTestCase = {
     height:number;

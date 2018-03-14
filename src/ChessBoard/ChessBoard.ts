@@ -1,15 +1,8 @@
-export type Position = [number, number];
-export type Queen = {
-    name:'Q';
-    position:Position;
-};
+import { IChessBoard } from './lib/IChessBoard';
+import { Position } from './lib/Position';
+import { Queen } from './lib/Queen';
 
-export interface IChessBoard {
-    readonly pieces:Queen[];
-    readonly height:number;
-    readonly width:number;
-    positionInBounds(pos:Position) : boolean;
-}
+export { IChessBoard, Position, Queen };
 
 export class ChessBoard implements IChessBoard {
 

@@ -1,4 +1,4 @@
-import { IChessBoard, Queen } from '../ChessBoard';
+import { IChessBoard, Queen } from '../ChessBoard/ChessBoard';
 
 export const getSquareCharMatrix = (board:IChessBoard) : string[][] => {
     const {height, width} = board;

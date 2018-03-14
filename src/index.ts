@@ -1,4 +1,4 @@
-import { ChessBoard } from './ChessBoard';
+import { ChessBoard } from './ChessBoard/ChessBoard';
 import { getChessBoardString } from './PrintChessBoard/getChessBoardString';
 
 export const main = () : void => {

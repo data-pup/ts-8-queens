@@ -1,4 +1,4 @@
-import { ChessBoard, Position, Queen } from './ChessBoard';
+import { ChessBoard, Position, Queen } from '../ChessBoard/ChessBoard';
 
 export const getQueenMovementOptions = (q:Queen, board:ChessBoard) : Position[] => {
     return [
