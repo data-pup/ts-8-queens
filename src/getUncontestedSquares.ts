@@ -1,8 +1,5 @@
-import { ChessBoard, Position } from "./ChessBoard";
-
-const getRange = (min:number, max:number) : number[] => {
-    return new Array(max - min).map((_, i) => min + i);
-}
+import { ChessBoard, Position } from './ChessBoard';
+import { getQueenMovementOptions } from './getQueenMovementOptions';
 
 const getBoolArray = (board:ChessBoard) : boolean[][] => {
     const {height, width} = board;
@@ -10,18 +7,26 @@ const getBoolArray = (board:ChessBoard) : boolean[][] => {
         .map((_, i) =>
             new Array<boolean>(width).fill(true),
         );
-}
+};
 
 export const getUncontestedSquares = (board:ChessBoard) : Position[] => {
-    const {pieces, height, width} = board;
-    const [xDomain, yDomain] = [getRange(0, width), getRange(0, height)];
-    const possibleSquares = getBoolArray(board);
+    const uncontestedFlags = getBoolArray(board);
+    const uncontestedPositions = new Array<Position>();
 
-    pieces.forEach((currPiece) => {
-        const [pieceX, pieceY] = currPiece.position;
-        xDomain.forEach((x) => possibleSquares[pieceY][x] = false)
-        yDomain.forEach((y) => possibleSquares[y][pieceX] = false)
+    board.pieces
+        .map((p) => getQueenMovementOptions(p, board))
+        .forEach((movementChoices:Position[]) => {
+            movementChoices.forEach((contestedPosition:Position) => {
+                const [x, y] = contestedPosition;
+                uncontestedFlags[y][x] = false;
+            });
+        });
+
+    uncontestedFlags.forEach((rowFlags, y) => {
+        rowFlags.forEach((isUncontested, x) => {
+            if (isUncontested) { uncontestedPositions.push([x, y]); }
+        });
     });
 
-    throw new Error('');
-}
+    return uncontestedPositions;
+};
