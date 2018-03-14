@@ -22,7 +22,7 @@ export class ChessBoard {
     }
 
     public positionInBounds([x, y]:Position) : boolean {
-        return (x > 0 && y > 0 && x < this.width && y < this.height);
+        return (x >= 0 && y >= 0 && x < this.width && y < this.height);
     }
 
     private validateDimensions() : void {
@@ -36,7 +36,7 @@ export class ChessBoard {
     private validatePositions() : void {
         this.pieces.forEach(({position}:Queen, i:number) => {
             if (!this.positionInBounds(position)
-            ||  !this.noOtherPiecesAtPosition(position, i+1)) {
+            ||  !this.noOtherPiecesAtPosition(position, i + 1)) {
                 throw new Error(ChessBoard.invalidPositionError);
             }
         });
