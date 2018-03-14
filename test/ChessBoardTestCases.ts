@@ -55,13 +55,31 @@ export class ChessBoardTestCases {
             height:8, width:8,
             pieces:[ {name:'Q', position:[-1, 0]} ],
             expectedError:ChessBoard.invalidPositionError,
-            testDesc:'Piece cannot be at negative coordinates.',
+            testDesc:'Piece cannot be at position with negative x coordinate.',
+        },
+        {
+            height:8, width:8,
+            pieces:[ {name:'Q', position:[0, -1]} ],
+            expectedError:ChessBoard.invalidPositionError,
+            testDesc:'Piece cannot be at position with negative y coordinate.',
         },
         {
             height:8, width:8,
             pieces:[ {name:'Q', position:[8, 8]} ],
             expectedError:ChessBoard.invalidPositionError,
             testDesc:'Coordinates cannot equal dimensions.',
+        },
+        {
+            height:8, width:8,
+            pieces:[ {name:'Q', position:[8, 7]} ],
+            expectedError:ChessBoard.invalidPositionError,
+            testDesc:'Coordinates cannot have x >= width.',
+        },
+        {
+            height:8, width:8,
+            pieces:[ {name:'Q', position:[7, 8]} ],
+            expectedError:ChessBoard.invalidPositionError,
+            testDesc:'Coordinates cannot have y >= height.',
         },
     ];
 

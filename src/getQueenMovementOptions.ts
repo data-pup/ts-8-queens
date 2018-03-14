@@ -1,7 +1,11 @@
 import { ChessBoard, Position, Queen } from './ChessBoard';
 
-const getRange = (min:number, max:number) : number[] => {
-    return new Array(max - min).map((_, i) => min + i);
+export const getQueenMovementOptions = (q:Queen, board:ChessBoard) : Position[] => {
+    return [
+        ...verticalMoves(q, board),
+        ...horizontalMoves(q, board),
+        ...diagonalMoves(q, board),
+    ];
 };
 
 const verticalMoves = (q:Queen, board:ChessBoard) : Position[] => {
@@ -34,10 +38,6 @@ const diagonalMoves = (q:Queen, board:ChessBoard) : Position[] => {
     return moves;
 };
 
-export const getQueenMovementOptions = (q:Queen, board:ChessBoard) : Position[] => {
-    return [
-        ...verticalMoves(q, board),
-        ...horizontalMoves(q, board),
-        ...diagonalMoves(q, board),
-    ];
+const getRange = (min:number, max:number) : number[] => {
+    return new Array(max - min).map((_, i) => min + i);
 };
