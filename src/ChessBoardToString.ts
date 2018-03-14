@@ -4,14 +4,14 @@ import { ChessBoard, Queen,
 } from './ChessBoard';
 
 export const getChessBoardString = (board:ChessBoard) : string => {
+    const horizontalBorder = getHorizontalBorder(board.width);
     const squareChars = getSquareCharMatrix(board);
     setPieceChars(squareChars, board.pieces);
-    const horizontalBorder = getHorizontalBorder(board.width);
     return squareChars
         .map((rowChars:string[]) : string =>
-            [horizontalBorder, getRowString(rowChars)].join('\n'))
-        .concat(...[horizontalBorder, ''])
-        .join('\n');
+            [horizontalBorder, getRowString(rowChars)].join(''))
+        .concat(horizontalBorder)
+        .join('');
 };
 
 const getSquareCharMatrix = (board:ChessBoard) : string[][] => {
@@ -32,11 +32,11 @@ const setPieceChars = (squareChars:string[][], pieces:Queen[]) => {
 
 const getHorizontalBorder = (width:number) : string => {
     const visualWidth = (2 * width) + 1;
-    return new Array(visualWidth).fill('-').join('');
+    return new Array(visualWidth).fill('-')
+        .concat('\n')
+        .join('');
 };
 
 const getRowString = (rowChars:string[]) : string => {
-    rowChars.unshift('');
-    rowChars.push('');
-    return rowChars.join('|');
+    return ['', ...rowChars, '\n'].join('|');
 };
