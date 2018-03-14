@@ -26,7 +26,5 @@ export const getUncontestedSquares = (board:ChessBoard) : Position[] => {
 const getBoolArray = (board:ChessBoard) : boolean[][] => {
     const {height, width} = board;
     return new Array<boolean[]>(height)
-        .map((_, i) =>
-            new Array<boolean>(width).fill(true),
-        );
+        .map((_) => new Array<boolean>(width).fill(true));
 };

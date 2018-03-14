@@ -17,31 +17,37 @@ export class ChessBoard {
         this.pieces = new Array(...pieces);
         this.height = height;
         this.width = width;
-        this.validateDimensions(height, width);
-        this.validatePositions(pieces, height, width);
+        this.validateDimensions();
+        this.validatePositions();
     }
 
     public positionInBounds([x, y]:Position) : boolean {
         return (x > 0 && y > 0 && x < this.width && y < this.height);
     }
 
-    private validateDimensions(height:number, width:number) : void {
+    private validateDimensions() : void {
         if (this.height <= 0 || this.width <= 0) {
             throw new Error(ChessBoard.invalidParamsError);
         }
     }
 
-    private validatePositions(pieces:Queen[], height:number, width:number) : void {
-        pieces.map((q:Queen) : Position => q.position) // Iterate through each position.
-            .forEach(([x, y]:Position, i:number, arr:Position[]) => {
-                if (x < 0 || y < 0 || x >= width || y >= height) {
-                    throw new Error(ChessBoard.invalidPositionError);
-                } // Check that only one piece is at the current position.
-                const onePieceAtCurrPos:boolean = arr
-                    .filter(([a, b]:Position) : boolean => x === a && y === b)
-                    .length === 1; // Throw an exception if two or more pieces share a position.
-                if (!onePieceAtCurrPos) { throw new Error(ChessBoard.invalidPositionError); }
-            },
-        );
+    // Iterate through the positions for the list of pieces, and check that each
+    // piece is in bounds, and that no two pieces share the same position.
+    private validatePositions() : void {
+        this.pieces.forEach(({position}:Queen, i:number) => {
+            if (!this.positionInBounds(position)
+            ||  !this.noOtherPiecesAtPosition(position, i+1)) {
+                throw new Error(ChessBoard.invalidPositionError);
+            }
+        });
+    }
+
+    private noOtherPiecesAtPosition(checkPos:Position, startIndex:number=0) : boolean {
+        const [x, y] = checkPos;
+        for (let index = startIndex; index < this.pieces.length; index++) {
+            const [currX, currY] = this.pieces[index].position;
+            if (x === currX && y === currY) { return false; }
+        }
+        return true;
     }
 }
