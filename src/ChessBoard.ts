@@ -4,7 +4,14 @@ export type Queen = {
     position:Position;
 };
 
-export class ChessBoard {
+export interface IChessBoard {
+    readonly pieces:Queen[];
+    readonly height:number;
+    readonly width:number;
+    positionInBounds(pos:Position) : boolean;
+}
+
+export class ChessBoard implements IChessBoard {
 
     public static readonly invalidParamsError = 'Invalid constructor parameters!';
     public static readonly invalidPositionError = 'Invalid position exists!';
@@ -25,6 +32,7 @@ export class ChessBoard {
         return (x >= 0 && y >= 0 && x < this.width && y < this.height);
     }
 
+    // Helper function used by the constructor, throw an error if dimensions are invalid.
     private validateDimensions() : void {
         if (this.height <= 0 || this.width <= 0) {
             throw new Error(ChessBoard.invalidParamsError);
@@ -42,8 +50,10 @@ export class ChessBoard {
         });
     }
 
-    private noOtherPiecesAtPosition(checkPos:Position, startIndex:number=0) : boolean {
-        const [x, y] = checkPos;
+    // Helper function used by the constructor, iterate through the pieces array
+    // starting at a given index, and ensure that no other pieces are at the same
+    // position as the given position.
+    private noOtherPiecesAtPosition([x, y]:Position, startIndex:number=0) : boolean {
         for (let index = startIndex; index < this.pieces.length; index++) {
             const [currX, currY] = this.pieces[index].position;
             if (x === currX && y === currY) { return false; }
