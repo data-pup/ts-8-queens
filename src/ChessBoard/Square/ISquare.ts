@@ -1,7 +1,4 @@
-export type ISquare = {
-    readonly x:number;
-    readonly y:number;
-
+export interface ISquare {
     up:ISquare;
     down:ISquare;
     left:ISquare;
@@ -10,4 +7,6 @@ export type ISquare = {
     upRight:ISquare;
     downLeft:ISquare;
     downRight:ISquare;
+
+    isContestedFlag:boolean;
 }
