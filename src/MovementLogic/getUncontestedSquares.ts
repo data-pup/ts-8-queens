@@ -1,13 +1,13 @@
-import { ChessBoard, Position } from '../ChessBoard/ChessBoard';
+import { IChessBoard, Position } from '../ChessBoard/ChessBoard';
 import { getQueenMovementOptions } from './getQueenMovementOptions';
 
-export const getUncontestedSquares = (board:ChessBoard) : Position[] => {
+export const getUncontestedSquares = (board:IChessBoard) : Position[] => {
     const uncontestedFlags = getBoolArray(board);
     const uncontestedPositions = new Array<Position>();
 
-    board.pieces // Get each queen's movement choices, set those positions'
-        .map((p) => getQueenMovementOptions(p, board)) // value to false
-        .forEach((movementChoices:Position[]) => { // in the bool array.
+    board.pieces // Get each queen's movement choices, set flags to false.
+        .map((p) => getQueenMovementOptions(p, board))
+        .forEach((movementChoices:Position[]) => {
             movementChoices.forEach((contestedPosition:Position) => {
                 const [x, y] = contestedPosition;
                 uncontestedFlags[y][x] = false;
@@ -23,8 +23,11 @@ export const getUncontestedSquares = (board:ChessBoard) : Position[] => {
     return uncontestedPositions;
 };
 
-const getBoolArray = (board:ChessBoard) : boolean[][] => {
+const getBoolArray = (board:IChessBoard) : boolean[][] => {
     const {height, width} = board;
-    return new Array<boolean[]>(height)
-        .map((_) => new Array<boolean>(width).fill(true));
+    const boolArray = Array<boolean[]>(height);
+    for (let i = 0; i < height; i++) {
+        boolArray[i] = new Array(width).fill(true);
+    }
+    return boolArray;
 };

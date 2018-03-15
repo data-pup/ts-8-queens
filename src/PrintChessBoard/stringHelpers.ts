@@ -1,18 +1,18 @@
-import { IChessBoard, Queen } from '../ChessBoard/ChessBoard';
+import { IChessBoard, Position } from '../ChessBoard/ChessBoard';
 
-export const getSquareCharMatrix = (board:IChessBoard) : string[][] => {
+export const getSquareCharMatrix = (board:IChessBoard, defChar:string=' ') : string[][] => {
     const {height, width} = board;
     const squareChars = new Array(height);
     for (let i = 0; i < height; i++) {
-        squareChars[i] = new Array(width).fill(' ');
+        squareChars[i] = new Array(width).fill(defChar);
     }
     return squareChars;
 };
 
-export const setPieceChars = (squareChars:string[][], pieces:Queen[]) => {
-    for (const p of pieces) {
-        const [x, y] = p.position;
-        squareChars[y][x] = p.name;
+export const setChars = (squareChars:string[][], positions:Position[], newChar:string) => {
+    for (const p of positions) {
+        const [x, y] = p;
+        squareChars[y][x] = newChar;
     }
 };
 

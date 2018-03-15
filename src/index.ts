@@ -1,17 +1,18 @@
 import { ChessBoard } from './ChessBoard/ChessBoard';
-import { getChessBoardString } from './PrintChessBoard/getChessBoardString';
+import {
+    getChessBoardStringWithContestedSquares,
+} from './PrintChessBoard/getChessBoardStringWithContestedSquares';
 
 export const main = () : void => {
     const board = new ChessBoard(
         [
             {name:'Q', position:[0, 0]},
             {name:'Q', position:[0, 1]},
-            {name:'Q', position:[2, 2]},
         ],
         3,
         3,
     );
-    const boardString = getChessBoardString(board);
+    const boardString = getChessBoardStringWithContestedSquares(board);
     process.stdout.write(`${boardString}`);
 };
 

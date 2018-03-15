@@ -1,6 +1,6 @@
-import { ChessBoard, Position, Queen } from '../ChessBoard/ChessBoard';
+import { IChessBoard, Position, Queen } from '../ChessBoard/ChessBoard';
 
-export const getQueenMovementOptions = (q:Queen, board:ChessBoard) : Position[] => {
+export const getQueenMovementOptions = (q:Queen, board:IChessBoard) : Position[] => {
     return [
         ...verticalMoves(q, board),
         ...horizontalMoves(q, board),
@@ -8,17 +8,17 @@ export const getQueenMovementOptions = (q:Queen, board:ChessBoard) : Position[] 
     ];
 };
 
-const verticalMoves = (q:Queen, board:ChessBoard) : Position[] => {
+const verticalMoves = (q:Queen, board:IChessBoard) : Position[] => {
     const x = q.position[0];
     return getRange(0, board.height).map((y) => [x, y] as Position);
 };
 
-const horizontalMoves = (q:Queen, board:ChessBoard) : Position[] => {
+const horizontalMoves = (q:Queen, board:IChessBoard) : Position[] => {
     const y = q.position[1];
     return getRange(0, board.width).map((x) => [x, y] as Position);
 };
 
-const diagonalMoves = (q:Queen, board:ChessBoard) : Position[] => {
+const diagonalMoves = (q:Queen, board:IChessBoard) : Position[] => {
     const {height, width} = board;
     const [x, y] = q.position;
     const moves = new Array<Position>(...[q.position]);
