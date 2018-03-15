@@ -1,4 +1,4 @@
-import { IPiece } from './IPiece';
+import { IPiece } from './Pieces/IPiece';
 
 export interface IChessBoard {
     readonly pieces:IPiece[];

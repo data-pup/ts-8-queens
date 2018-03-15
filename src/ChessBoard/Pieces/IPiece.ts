@@ -1,4 +1,4 @@
-import { ISquare } from './ISquare';
+import { ISquare } from '../Square/ISquare';
 
 export interface IPiece {
     readonly square:ISquare;

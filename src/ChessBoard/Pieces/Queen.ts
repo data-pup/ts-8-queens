@@ -1,5 +1,5 @@
 import { IPiece } from './IPiece';
-import { ISquare } from './ISquare';
+import { ISquare } from '../Square/ISquare';
 
 export class Queen implements IPiece {
     public readonly square:ISquare;

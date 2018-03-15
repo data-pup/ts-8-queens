@@ -1,6 +1,8 @@
 import { IChessBoard } from './IChessBoard';
-import { IPiece } from './IPiece';
-import { ISquare } from './ISquare';
+import { IPiece } from './Pieces/IPiece';
+import { ISquare } from './Square/ISquare';
+
+export { IChessBoard, IPiece, ISquare };
 
 export class ChessBoard implements IChessBoard {
 
