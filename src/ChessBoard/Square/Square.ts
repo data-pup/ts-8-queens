@@ -15,5 +15,13 @@ export class Square implements ISquare {
 
     constructor() {
         this.isContestedFlag = false;
+        this.up = null;
+        this.down = null;
+        this.left = null;
+        this.right = null;
+        this.upLeft = null;
+        this.upRight = null;
+        this.downLeft = null;
+        this.downRight = null;
     }
 }

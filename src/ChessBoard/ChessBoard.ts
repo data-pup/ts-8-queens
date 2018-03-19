@@ -1,3 +1,4 @@
+import { buildBoard } from './ChessBoardFactory';
 import { IChessBoard } from './IChessBoard';
 import { IPiece } from './Pieces/IPiece';
 import { ISquare } from './Square/ISquare';
@@ -14,21 +15,14 @@ export class ChessBoard implements IChessBoard {
 
     public static readonly invalidParamsError = 'Invalid constructor parameters!';
 
-    private readonly bottomLeft:ISquare;
-    private readonly bottomRight:ISquare;
-    private readonly topLeft:ISquare;
-    private readonly topRight:ISquare;
-
+    public readonly origin:ISquare;
     public readonly pieces:IPiece[];
     public readonly height:number;
     public readonly width:number;
 
     constructor(height:number=8, width:number=8) {
         ChessBoard.validateDimensions(height, width);
-        this.bottomLeft = undefined;
-        this.bottomRight = undefined;
-        this.topLeft = undefined;
-        this.topRight = undefined;
+        this.origin = buildBoard(height, width);
     }
 
     public positionInBounds(x:number, y:number) : boolean {
