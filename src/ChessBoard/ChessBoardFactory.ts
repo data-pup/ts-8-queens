@@ -1,11 +1,13 @@
 import { Square } from './Square/Square';
 
+// Build a chessboard, return a reference to the origin square.
 export const buildBoard = (height:number, width:number) : Square => {
     const rows:Square[][] = [...new Array(height)].fill(buildRow(width));
-    linkRows(rows);
+    linkSquares(rows);
     return rows[0][0];
 };
 
+// This function is used to build a row. This will initialize the left/right pointers.
 const buildRow = (rowWidth:number) : Square[] => {
     const row:Square[] = new Array(rowWidth);
     if (rowWidth === 1) { return row; }
@@ -17,7 +19,8 @@ const buildRow = (rowWidth:number) : Square[] => {
     return row;
 };
 
-const linkRows = (rows:Square[][]) : void => {
+// This function will link all of the squares together.
+const linkSquares = (rows:Square[][]) : void => {
     for (let i = 0; i < rows.length - 1; i++) {
         const [top, bottom] = [rows[i], rows[i+1]]
         addVerticalLinks(top, bottom);
@@ -30,6 +33,7 @@ const linkRows = (rows:Square[][]) : void => {
     }
 };
 
+// This function links two rows together, setting each square's up/down pointers.
 const addVerticalLinks = (upperRow:Square[], lowerRow:Square[]) : void => {
     if (upperRow.length === lowerRow.length) {
         const rowLength = upperRow.length;
@@ -43,6 +47,7 @@ const addVerticalLinks = (upperRow:Square[], lowerRow:Square[]) : void => {
     }
 };
 
+// This function is called after the vertical links (up/down) to the rows.
 const addDiagLinks = (s:Square) : void => {
     if (s.up !== null) {
         if (s.up.left !== null) {
